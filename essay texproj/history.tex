@@ -1,0 +1,41 @@
+\section{History}\label{sect:history}
+
+Following digital video codecs becoming more and more mainstream in the early 1990s, a big challenge was, and still is, to create codecs that provide the optimal ratio of video quality and data quantity, and to find the best way of streaming digitally encoded video sequences over the Internet. For codecs, the correct ratio will depend on the use case. You may accept a higher data quantity for an increased video quality when you store the original of a video clip. However you may also have to live with lower quality in order to reduce the data quantity when streaming the video over the internet. 
+
+Testing the quality of the video, especially after the video sequence comes out on the other end of a streaming procedure, is an important step in both finding the correct codec and especially the correct streaming protocol. Producing a subjective test score relies on well designed and organized tests with several test subjects. Performing such a test will likely be both expensive and time consuming. On the other hand, a tool for producing an objective quality assessment score could be able to rate the quality of the video faster, cheaper and without the involvement of large subjective testing groups. Researchers with access to such a tool would be in a good position when testing anything they are developing that handles and\slash or alters video sequences.
+
+\subsection{Peak Signal to Noise Ratio}\label{sect:psnr}
+A much used approach to testing video quality objectively is Peak Signal to Noise Ratio (PSNR). It is simple, and has been used for a long time. However, when the original video content is altered in any way, the quality measured by PSNR is not reliably close to the assessment results coming from subjective testing. A better approach is taking the human visual system (HVS) into account when analysing the video quality. This is explained, among others, by Huynh-Thu and M. Gihanbari in \cite{4550695} and Bernd Giron in\cite{Girod:1993:WWM:197765.197784}.
+
+\subsection{Validation of Perceptual Objective Video Quality Assessment standards}\label{sect:validation}
+Unlike PSNR, perceptual objective video quality assessment tools attempt to mimic the HVS so that the results may be closer to subjective test results. In order to meet requirements and expectations from users for a potential objective video quality assessment tool, a subcommittee of The American National Standards Association (ANSI), named Accredited Alliance for Telecommunications Industry Solution (ATIS), performed a validation test for objective video quality measurement. As described by Pinson, Staelens and Webster in\cite{6659332}, the report\cite{T1A1.5} from the testing, performed by the group T1A1.5 within ATIS, laid the groundwork for future tests of objective video quality assessment tools. Two standards were also formed after the testing, the ANSI Standard T1.801.03 and T1.801.01. The following information is based on a paper by Pinson, Staelens and Webster\cite{6659332}, summarizing the history of video quality model validation.
+
+In 1997 the first meeting of the Video Quality Experts Group (VQEG, www.vqeg.org) found place in Turin. VQEG was formed so that international experts within subjective video quality measurement could come together and share their information. The purpose of the group was and still is to advance within the field of video quality assessment.
+
+To date the VQEG group has gone through several large testing phases. From 1999 to 2000 their first phase, called the full reference television (FRTV) phase I, were conducted by the Independent Lab Group (ILG). It was designed for testing objective full- and no-reference standard definition television quality; however none of the no reference models made it to the testing phase. The conclusion from the test was that none of the submitted models were statistically better than PSNR.
+
+Following the FRTV phase I came FRTV phase II (2002-2003), the multimedia phase I (2007-2008), reduced reference/no reference television (RRNR-TV) phase I (2008-2009) and the high definition television (HDTV) test (2009-2010, all tests conducted by ILG with some proponents involved in certain cases. Eight full reference FR models were published in a first rendition of ITU-T Rec. J144 following FRTV phase I (2001), and FRTV phase II published a revised version of ITU-T Rec. J144 as well as ITU-T Rec. BT.1683, where two FR models were standardized. In both phases all no reference (NR) models were withdrawn. Following the multimedia phase I, FR models from Nippon Telegraph and Telephone Corporation (NTT), OPTICOM, Psytechnics and Yonsei University were standardized in ITU-T Rec. J.247 and ITU-R BT.1866. A reduced reference (RR) model from Yonsei University was standardized in ITU-T Rec. J.246 and ITU-R BT.1867. Again no NR models were standardized. The RRNR-TV phase I test standardized 3 RR models in ITU-T Rec. J.249, and the HDTV test in 2009-2010 standardized two FR models in J.341 and a RR models in J.242. Two NR models were mentioned in VQEGs final report for the HDTV test, but neither was standardized. For more information on the history of VQEGs validation tests, see Staelens and Websters paper in\cite{6659332}.
+
+\begin{table}
+	\center
+	\caption{Overview of test phases}
+    \begin{tabular}{p{3cm}p{1.5cm}p{2cm}p{3cm}p{5cm}}
+    Test-phase name  & Org. & Date      & Resolutions      & Standards documents                                                \\
+    T1A1            & ATIS & 1994-1995 & NTSC             & T1.801.03 \& T1.801.01                                             \\
+    FRTV Phase I    & VQEG & 1999-2000 & NTSC \& PAL      & ITU-T Rec. J.144                                                   \\
+    FRTV Phase II   & VQEG & 2002-2003 & NTSC \& PAL      & ITU-T Rec. J.144 \& ITU-R Rec. BT.1683                             \\
+    Multimedia      & VQEG & 2007-2008 & VGA, CIF \& QCIF & ITU-T Rec. J.247, ITU-R BT.1866, ITU-T Rec. J.246 \& ITU-R BT.1867 \\
+    RRNR-TV Phase I & VQEG & 2008-2009 & NTSC \& PAL      & ITU-T Rec. J.249                                                   \\
+    HDTV            & VQEG & 2009-2010 & 1080i \& 1080p   & ITU-T Rec. J.341 \& ITU-T Rec. J.242                               \\
+    \end{tabular}	
+	\label{table:testOverview}
+\end{table}
+
+Table \ref{table:testOverview} shows a summary of the test phases we have talked about with the name of the test phase, name of the organization who designed the test, the date, tested resolutions and standards documents for objective video quality assessment published following the tests.
+
+In order to further improve and advance the field of validation of video quality metrics, VQEG have also started the Joint Effort Group (JEG) which is developing tools and laying a groundwork for others who wish to validate video quality metrics. More about the JEG group can be read in Staelens et. al. paper\cite{6065713}.
+
+In the next section we will provide an introduction to exactly what objective video quality assessment means, and the difference between the three approaches mentioned in this section, no-, reduced- and full-reference objective video quality assessment.
+
+
+

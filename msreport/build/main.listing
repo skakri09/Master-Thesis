@@ -1,0 +1,11 @@
+/* Testing a comment before the code */
+void CoarseTemporalAlignment::realign(cv::Mat src, cv::Mat &dst, int numFrames){
+    dst = cv::Mat::zeros(src.rows, src.cols, src.type());
+    cv::Mat srcRoi;
+    if (numFrames >= 0) {
+        srcRoi = src(cv::Rect(0, 0, src.cols - numFrames, src.rows));
+        srcRoi.copyTo(dst(cv::Rect(numFrames, 0, dst.cols - numFrames, dst.rows)));
+    } else {
+        srcRoi = src(cv::Rect(-numFrames, 0, src.cols + numFrames, src.rows));
+        srcRoi.copyTo(dst(cv::Rect(0, 0, dst.cols + numFrames, dst.rows)));
+    }

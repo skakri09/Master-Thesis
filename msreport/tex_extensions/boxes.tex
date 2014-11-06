@@ -1,0 +1,187 @@
+\usepackage[most]{tcolorbox}[2014/05/28] % Minimum v3.05
+\tcbuselibrary{most}
+\tcbuselibrary{listings}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+
+%
+% Declare a new floating type for the Source Code
+%
+\DeclareFloatingEnvironment[
+  fileext=loc,
+  listname={List of Source code listings},
+  name=Code Listing,
+  placement=htp,
+]{codelisting}
+
+\makeatletter % Must change the catcode of @ to 11 before defining the listing style
+
+% add tcblistings to \jobname.loc (list of codes)
+\tcbset{
+  listingcaption/.store in=\kvtcb@listingcaption,%
+   addtolol/.style={list entry={\numberline {\thetcbcounter}%
+       {\ignorespaces \kvtcb@listingcaption}},%
+     add to list={loc}{section}},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Code listing style
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\codecommentcolor}{\color{yellow!50!red}}
+\colorlet{codecommentcolor}{yellow!50!red}
+
+% language and style definition
+\lstdefinestyle{Cppstyle}
+{%
+  language = C++,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  identifierstyle=\color{blue},
+  % keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  stringstyle=\color{orange},
+  %morecomment=[l][\color{yellow!50!red}]{//},
+  morecomment=[l][\color{codecommentcolor}]{//},
+  %morecomment=[l][\codecommentcolor{}]{//},
+  %escapechar=@,
+  %morecomment=[s][\color{green}]{/*}{*/},
+  %keywordstyle = \color{blue},
+}[keywords,strings,comments]
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Code listing
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newtcblisting[auto counter,
+number within=chapter,
+]{cppcode}[1][]{%
+  listing only,
+  %colback=white,
+  %colback=red!30!white,
+  colback=lightgray!10!white,
+  %colbackmiddlefirst=!88!black,
+  %colbackmiddlelast=!93!black,
+  %colback=lightgray!40!white,
+  %colbackmiddlefirst=!40!white,
+  %colbackmiddlelast=!40!white,
+  %colback=white,
+  %colbackmiddlefirst=!40!white,
+  %colbackmiddlelast=!40!white,
+  %colbacklower=white,
+  colframe=gray!60!white,
+  fontlower=\small,
+%  listing remove caption=true,
+  %skin=beamercustom,
+  lower separated=true,
+  listing engine=listings,
+  breakable,
+  enlarge top by=0.5cm,          % Add space above the box
+%  enlarge top by=1cm, % Add space before the code listing
+%  enlarge bottom by=0.3cm, % Add space after the code listing
+  arc=0cm,            % Remove the rounded corners
+  outer arc=0.3mm,    % Remove the rounded corners on outside
+%
+  % Add space on left side of content. This moves the line numbering inside the box
+  left=8mm,
+%
+  top=0pt,
+  bottom=0pt,
+%
+  boxrule=0mm,        % The border width
+  bottomrule=0.7pt,
+  leftrule=0.7pt,
+  rightrule=1pt,
+  lines before break=6, % Require at least 5 lines in the upper part to break the code block
+                        % If less than 5, the code block is moved to next page.
+% boxrule=0.7pt,        % The border width
+%
+  toptitle=2pt,       % Add space in title bar
+  bottomtitle=1pt,    % Add space in title bar
+  title={Source Code \thetcbcounter}, % Set default box title to
+  %listingcaption=\kvtcb@title,    % Set default code list title to box title
+  listing options={
+    style=Cppstyle,
+    breaklines=true,
+    numbers=left,
+  },
+  #1,
+}
+
+\crefname{tcb@cnt@cppcode}{code listing}{code listings}
+\Crefname{tcb@cnt@cppcode}{Code listing}{Code listings}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Tables box
+%%%%%%%%%%%%%%%%%%%%%%
+\newtcolorbox
+  {tablebox}[1][]{%
+  title={Table \thetcbcounter}, % Set default box title
+  top=5mm,                       % Add space between title and content
+  left=0mm,
+  right=0mm,
+  colback=white,
+  toptitle=1pt,
+  bottomtitle=0pt,
+  %colframe=blue!40!white,
+  colframe=DodgerBlue!60!white,
+  enlarge top by=0.5cm, % Add space before the table
+  arc=0cm,            % Remove the rounded corners
+  outer arc=0.3mm,    % Remove the rounded corners on outside
+  #1,
+}
+
+\crefname{tcb@cnt@tablebox}{table}{tables}
+\Crefname{tcb@cnt@tablebox}{Table}{Tables}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% Figures box
+%%%%%%%%%%%%%%%%%%%%%%
+\newtcolorbox[auto counter,
+number within=chapter,
+%crefname={figure}{Figure},
+%Crefname={Figure}{Figures},
+]{figurebox}[1][]{%
+  title={Figure \thetcbcounter}, % Set default box title
+ % enhanced,
+  %minipage boxed title=7.5cm,
+ % attach boxed title to top center,
+%  enlarge top by=0.5cm,         % Floats have a default spacing, so no need to set this for figures
+  top=5mm,                       % Add space between title and content in the box
+  toptitle=1pt,
+%  boxrule=0.7pt,        % The border width
+  boxrule=0.0pt,        % The border width
+  bottomrule=0mm,
+  colback=white,                 % Background color
+%  boxsep=0mm,
+ % colframe=Firebrick4!60!white,
+  %colframe=black!75!white,
+ % colframe=figureframecolor,
+%x  coltitle=Firebrick4!90!white,
+%  center title,
+ colframe=white,
+  arc=0cm,                       % Remove the rounded corners
+%  outer arc=0.3mm,               % Remove the rounded corners on outside
+  #1,
+}
+\crefname{tcb@cnt@figurebox}{figure}{figures}
+\Crefname{tcb@cnt@figurebox}{Figure}{Figures}
+
+\crefname{subfigure}{subfigure}{subfigures}
+\Crefname{subfigure}{Subfigure}{Subfigures}
+
+
+% Must be defined here, apparently
+\def\@captype{codelisting}
+
+\newcommand{\codebox}[1]{\capstart\begin{cppcode}[#1]}
+
+\AtBeginDocument{%
+  \NewDocumentCommand{\boxcaption}{mmO{#2}}{\begingroup \captionof{#1}[#3]{#2} \endgroup}
+}
+
+\makeatother % changes the catcode of @ back to 12

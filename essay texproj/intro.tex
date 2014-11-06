@@ -1,0 +1,26 @@
+
+\section{Introduction}\label{sect:intro}
+Today there are no open source and free to use implementations of an accepted standard for full reference objective video quality assessment. In this paper we present the preliminary work for what will be an open source and free to use implementation of OPTICOMs PEVQ model \cite{j.247}. We will also provide an introduction to the history of digital video quality assessment, including validation test results for various full reference (FR), reduced reference (RR) and no reference (NR) assessment methods which is the basis for our reasoning behind choosing the PEVQ model. Finally we present the current progress of our implementation of PEVQ, including some preliminary results and an outline for future work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Background}\label{sect:background}
+
+From the time digital video codecs became widely used in the early 1990s there has been a demand for ways to objectively assess the quality of encoded video. Relying on subjective quality assessment is both time consuming and expensive, while a tool for objective quality assessment would be able to reduce both the cost and the time of measuring the quality of the video. The necessity for such a tool has been acknowledged by many, and today several standards for objective video quality assessment have been written.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Problem Definition and goals}\label{sect:problem}
+	
+As we will show in this paper, much work has been done towards creating an objective video quality assessment tool that can be as accurate as a well designed subjective test. The latest of such tools that provide the best results and resolution support are implemented and copyrighted by various companies, making it too expensive for most researchers and other potential users to benefit from using the software. Instead these users are forced to use less accurate tools which may be cheaper or free. This has motivated us to find and create our own free to use and open implementation of the best available open standard. It is also our goal to submit our solution to VLC\cite{vlc} and have it incorporated in their group of video handling software in order to make it easily and widely accessible.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Outline}\label{sect:outline}
+
+In section~\ref{sect:history} we present the history behind video quality assessment. Section~\ref{sect:ovqa} describes the various objective quality assessment approaches in detail. Section~\ref{sect:cts} provides the arguments and reasoning behind choosing the PEVQ model, as well as a brief explanation of the model itself. Section~\ref{sect:implementation} showcases the current implementation and preliminary results, and section~\ref{sect:summary} presents a summary of the paper, as well as a separate summary of possible future work.
+
+

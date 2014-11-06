@@ -1,0 +1,29 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[norsk, english]{babel}
+\usepackage{epsfig, times}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{cite}
+\usepackage{uiosloforside}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{epstopdf}
+\usepackage{auto-pst-pdf}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{framed}
+
+\pagestyle{myheadings}
+\markboth{MY TITLE}{MY TITLE}
+
+\addtolength{\textheight}{80pt}
+\addtolength{\voffset}{-40pt} 
+\setlength{\textwidth}{160mm}
+\setlength{\oddsidemargin}{-0mm}
+\setlength{\evensidemargin}{-0mm}

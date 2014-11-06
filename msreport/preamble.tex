@@ -1,0 +1,54 @@
+\documentclass[UKenglish]{ifimaster}  %% ... or USenglish or norsk or nynorsk
+\usepackage[utf8]{inputenc}           %% ... or latin1 or applemac
+\usepackage[T1]{fontenc,url}
+\urlstyle{sf}
+
+\usepackage[dvipsnames,dvipsnames,svgnames,table]{xcolor} 	% must come before various stuff
+															% dont know what, but many packages
+															% include color.
+
+\usepackage{textcomp}
+
+\usepackage{csquotes}
+
+\usepackage{ifimasterforside}
+
+
+\usepackage{varioref} 	% Must be included before hyperref
+
+\usepackage[bookmarks,breaklinks,pdfpagelabels,
+urlcolor=black,
+colorlinks=true,  % Colors links instead of ugly boxes
+urlcolor=blue,    % Color for external hyperlinks
+linkcolor=black,  % Color of internal links
+citecolor=black,  % Color of citations
+linktoc=all,
+plainpages=false,
+%pagebackref=true,
+%backref=true,
+%hyperindex=false,
+urlcolor=black]{hyperref}   % Reference package, must be before cleveref
+
+\usepackage[all]{hypcap}    % Link to figures (\ref{label}) go to the image,
+                            % and not the caption (Default value is true)
+							
+\usepackage[noabbrev]{cleveref}[2013/12/28] % Provides \cref command (must be after hyperref)  
+											% When use e.g \crefname{tcb@cnt@tablebox}{table}{tables}
+											% a \cref will automatically write table/figure etc.
+
+
+\usepackage{graphicx}
+\usepackage[norsk, english]{babel}
+
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{float}
+\usepackage{newfloat}   % Used for the custom listings (listofcodelistings, listofcommands)
+
+\usepackage{booktabs}
+
+\include{tex_extensions/boxes}
+\include{tex_extensions/colours}
+

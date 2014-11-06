@@ -1,0 +1,106 @@
+\usepackage[colorinlistoftodos
+%,disable
+]{todonotes}
+\setlength{\marginparwidth}{3cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% This file defines a few different todo commands:
+%%
+%% \feedback, \atodo, \citeneeded which are different
+%% variations of \todo with color and title
+%%
+%% Make list of todos with \insertlistoftodos
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+% Change the title of the todo list if needed
+%
+\newcommand{\todolisttitle}{Todo list}
+\newcommand{\debugprint}{DEBUGING}
+
+\newcommand{\insertlistoftodos}{%
+% Add TODO list
+\newpage
+\phantomsection % Sets correct page reference link for the code listings
+\hypertarget{todolistref}{}
+\bookmark[dest=todolistref,level=0]{\todolisttitle}
+% Use the line below to add entry to table of contets. (Remember to comments out the line above)
+%\addcontentsline{toc}{chapter}{\protect\numberline{}{\todolisttitle}}
+\listoftodos
+}
+
+\newtoggle{todoChapToggle}
+\newtoggle{todoSectToggle}
+
+\makeatletter % Must change the catcode of @ to 11 before defining the listing style
+% Set todo list title
+\@todonotes@SetTodoListName{\todolisttitle}%
+
+% Reset todoChapToggle and todoSectToggle at chapter/section start
+\pretocmd{\Hy@org@chapter}{\global\toggletrue{todoChapToggle}}{}{}
+\pretocmd{\section}{\global\toggletrue{todoSectToggle}}{}{}
+\makeatother % changes the catcode of @ back to 12
+
+% Creating a missing reference todo command
+\newcounter{todorefcounter}
+\newcommand{\atodo}[2][]{\addtocounter{todorefcounter}{1}%
+  \todo[%color=red!40,%
+  caption={\protect\hypertarget{todo\thetodorefcounter}{}Todo \thetodorefcounter: #2},%
+  #1]{\thetodorefcounter: Todo\\ #2. \hyperlink{todo\thetodorefcounter}{$\uparrow$}
+  }
+}
+
+\newcounter{citeneededfcounter}
+\newcommand{\citeneeded}[2][]{\addtocounter{citeneededfcounter}{1}\todo[color=red!40,%
+  caption={\protect\hypertarget{citeneeded\theciteneededfcounter}{}Citation needed \theciteneededfcounter: #2},%
+  #1]{Citation needed: \theciteneededfcounter\\ #2. \hyperlink{citeneeded\theciteneededfcounter}{$\uparrow$}
+  }
+}
+
+\newcounter{commentcounter}
+\newcommand{\acomment}[2][]{\addtocounter{commentcounter}{1}\todo[color=red!40,%
+  caption={\protect\hypertarget{comment\thecommentcounter}{}Comment \thecommentcounter: #2},%
+  #1]{Comment: \thecommentcounter\\ #2. \hyperlink{comment\thecommentcounter}{$\uparrow$}
+  }
+}
+
+\newcounter{todofeedbackcounter}
+\DeclareDocumentCommand{\feedback}{ O{} O{} m }{
+\addtocounter{todofeedbackcounter}{1}\todo[color=yellow!40,%
+author={\thetodofeedbackcounter: Feedback}, %
+caption={\protect\hypertarget{feedback\thetodofeedbackcounter}{}Feedback \thetodofeedbackcounter: #3},%
+  #1]{\ifx&#2&%
+    \else
+    {\color{blue}~#2:}
+   \fi
+   \\ #3. \hyperlink{feedback\thetodofeedbackcounter}{$\uparrow$}
+ }}
+
+\newcounter{questioncounter}
+\DeclareDocumentCommand{\question}{ O{} O{} m }{
+\addtocounter{questioncounter}{1}\todo[color=green!40,%
+  caption={\protect\hypertarget{question\thequestioncounter}{}Question \thequestioncounter: #3},%
+  #1]{\thequestioncounter: Question
+    \ifx&#2&%
+    \else
+    {\color{blue}~#2:}
+   \fi
+   \\ #3. \hyperlink{question\thequestioncounter}{$\uparrow$}
+ }}
+
+
+
+% This handles adding the chapter/section to the todo notes list
+\pretocmd{\atodo}{%
+  \iftoggle{todoChapToggle}{
+    \addtocontents{tdo}{%
+      \vskip\bigskipamount\noindent\textbf{\LARGE{Chapter \thechapter}}\par\nobreak\vskip\medskipamount}
+    \global\togglefalse{todoChapToggle}%
+  }{}%
+  \iftoggle{todoSectToggle}{%
+    \addtocontents{tdo}{%
+      \vskip\bigskipamount\noindent\textbf{\large{Section \thesection}}\par\nobreak\vskip\medskipamount}
+    \global\togglefalse{todoSectToggle}
+  }{}
+}{}{}

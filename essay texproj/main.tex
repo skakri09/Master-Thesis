@@ -1,0 +1,102 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[norsk, english]{babel}
+\usepackage{epsfig, times}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{verbatim}
+\usepackage{cite}
+\usepackage{uiosloforside}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{framed}
+
+
+\pagestyle{myheadings}
+
+%\markboth{MY TITLE}{MY TITLE}
+
+%\addtolength{\textheight}{80pt}
+\addtolength{\voffset}{-40pt} 
+\setlength{\textwidth}{160mm}
+\setlength{\oddsidemargin}{-0mm}
+\setlength{\evensidemargin}{-0mm}
+
+\title{Choosing and implementing an open and free to use Objective video quality assessment tool}
+%\title{History, challenges and current state of Objective Video Quality Assessment}
+%\author{Kristian Skarseth}
+
+%\date{} % Empty removes date
+
+%\begin{document}
+
+%\uiosloforside[kind=Master Essay]		
+
+%\uiosloforside[kind=\large{\mbox{TITLE}}, author=\large{\mbox{YOUR NAME}}]
+
+%\maketitle
+
+%\clearpage\pagenumbering{roman}
+
+\renewenvironment{abstract}
+ {\small
+  \begin{center}
+  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \list{}{
+    \setlength{\leftmargin}{.5cm}%
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+\author{Kristian Skarseth\\
+  Department of Informatics,\\
+  University of Oslo,\\
+  \texttt{kriskars@ifi.uio.no}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+	
+\end{abstract}
+
+%]
+
+%\tableofcontents{}
+%\listoffigures{}
+%\listoftables{}
+
+
+%%---------------------------------------------------------------------------%%
+%\begin{multicols}{2}
+\thispagestyle{empty}
+
+\clearpage\pagenumbering{arabic}
+\input{intro}
+
+\input{history}
+\input{ovqa}
+\input{cts}
+
+\input{implementation}
+
+\input{summary}
+
+%\end{multicols}
+%%---------------------------------------------------------------------------%%
+%% References 
+
+\bibliographystyle{unsrt}
+\bibliography{all}
+\end{document}
+
+

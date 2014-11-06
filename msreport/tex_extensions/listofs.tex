@@ -1,0 +1,16 @@
+
+\makeatletter % Must change the catcode of @ to 11 before defining the listing style
+\newcommand{\addchaptolistof}[2]{% arg1=type, arg2=listname
+\newtoggle{#1chapbool}
+\pretocmd{\Hy@org@chapter}{\global\toggletrue{#1chapbool}}{}{}
+\pretocmd{\caption}{%
+  \iftoggle{#1chapbool} {
+    \ifthenelse{\equal{#1}{\@captype}}{
+      \addtocontents{#2}{\vskip\bigskipamount\noindent\textbf{Chapter \thechapter%\argone
+        }\par\nobreak\vskip\medskipamount}
+      \global\togglefalse{#1chapbool}%
+    }{}%
+  }{}%
+}{}{}
+}
+\makeatother % changes the catcode of @ back to 12

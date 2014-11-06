@@ -1,0 +1,2 @@
+>=, <=, <, > is used very randomly in the pseucodes in the paper. 
+When we have propper test sequences later we may want to try and change around on these to see if we get better results.
