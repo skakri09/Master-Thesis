@@ -298,6 +298,7 @@ In addition to using C++ we wanted to use a library for video encoding. It was n
 
 
 \chapter{Rewriting the Initial Implementation}
+Unclear when to use full sequence length and when to use stopMatch - startMatch. We decided to always use full video length (max(srcLen, degLen)), and use start and stop match as range within the respective array/matrix.
 
 %%--------
 
