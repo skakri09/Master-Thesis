@@ -295,11 +295,52 @@ In addition to using C++ we wanted to use a library for video encoding. It was n
 
 \chapter{Testing the Initial Implementation}
        
-
+Problems with results. Not consistent with subjective results from databases we had.
+Many sources for bugs as we implemented everything from scratch by ourselves. 
+None-optimal performance.
 
 \chapter{Rewriting the Initial Implementation}
 
+Due to mentioned issues we decided to do a reimplementation using a third-party library. We wanted a library that would take care of the majority of the filtering operations in a simple and effective matter
+
+We landed on OpenCV which is a large library where video sequences can be represented by a series of matrices. These matrices are simple to filter in various ways with the large amount of image filtering operations provided with the library.
+
+We begun by switching out one stage at a time to utilize the OpenCV filtering operations by placing our frames in OpenCV matrices. After the majority of our original image processing had been implemented with OpenCV filters and we had solved several bugs we found in our original code the results still did not correlate with the subjective scores we used.
+
+We spent a lot of time looking for bugs or misunderstood parts of the J.247 standard. We continuously found new ways to interpret the standard, and also found several misprints/bugs in it.
+
+We started to realize that the temporal alignment part of the standard was not very important for our implementation, and we also learned that it was patented. It was also a potential source of errors in our code as it was quite complex. Based on these observations we decided to drop the entire temporal alignment. 
+
+Once this was done we were unable to find more issues with our code that could be the reason why our results were still wrong. As a result of this we started experimenting with the various constant coefficients in the code to see if we could get better correlation with any other values. This proved to be quite interesting. Our results suddenly started to make sense.
+
+"missingfigure for some initial correlation results".
+
+At this point we felt we had two things that had to be done. One was to clean up the code we now had and the other was to spend some effort trying to fine-tune the coefficients to see if we would be able to match the scores the PEVQ model had in J.247.
+
+For the cleaning we wanted to get rid of any unused code, and rely solely on OpenCV for image loading and processing. This meant removing Libav as a dependency and rewrite the video loader to use OpenCV. We started by removing our old Frame class and representing frames as a simple OpenCV matrix. This worked quite well and simplified the code significantly. In order to use OpenCV for video loading we had to compile OpenCV with FFmpeg. We also tested the OpenCV 3.0 beta which were supposed to have "seamless" OpenCL support by using cv::UMat instead of cv::Mat. This proved to be problematic due to out of memory crashes on the GPU and we decided to drop the UMat support.
+
+Once the re-implementation was complete we were unable to produce the same results as we had before the cleaning rewrite. This proved to be due to OpenCVs video reader which were hard-coded to convert YUV formats to RGB. Due to this we decided to revert back to using LibAV for video loading again, but this time around we went with the Ubuntu apt-get cached version, which required some slight rewrites from our original loader. The reason for this was to make it easier for users to install dependencies for the program. 
+
+For coefficients tuning we wrote a Python program which took the raw indicators provided by our program as input and looked for the best correlation with datasets we fed the program. This allowed us to tune to correlation between our solution and the subjective scores provided in large datasets we found in "somewhere on the interwebs, need cites". 
+
+\section{New, simplified pipeline}
+Spatial Alignment
+Colour Alignment
+Edginess Images
+Indicators
+DMOS mapping
+
+The new pipeline completely removes all temporal alignment related operations which leaves us with 4 main steps, spatial alignment, colour alignment, indicator creation and DMOS mapping.
+
+
+\section{Changes from the standard}
+Abs around chroma aggregation (fig B-78/79)
+
+\section{Coefficient tuning}
+Scaling by 80 and 40 on eY/eCb/eCr
+
 %%--------
+
 
 
 
