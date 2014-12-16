@@ -300,6 +300,7 @@ Many sources for bugs as we implemented everything from scratch by ourselves.
 None-optimal performance.
 
 \chapter{Rewriting the Initial Implementation}
+Unclear when to use full sequence length and when to use stopMatch - startMatch. We decided to always use full video length (max(srcLen, degLen)), and use start and stop match as range within the respective array/matrix.
 
 Due to mentioned issues we decided to do a reimplementation using a third-party library. We wanted a library that would take care of the majority of the filtering operations in a simple and effective matter
 
